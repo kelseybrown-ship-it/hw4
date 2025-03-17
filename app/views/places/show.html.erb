@@ -1,11 +1,18 @@
 <h1><%= @place["name"] %></h1>
 
 <h2>My Entries</h2>
+
+<form action="/posts" method="post">
+
 <% for entry in @entries %>
   <h3><%= entry["title"] %></h3>
   <h4><%= entry["occurred_on"] %></h4>
   <p><%= entry["description"] %></p>
+  <img class="img-fluid" src="<%= post["image"] %>" class="w-full">
 <% end %>
+
+<input type="hidden" name="place_id" value="<%= @place["id"] %>" id="place_id_input">
+</form>
 
 <p>
   <a href="/entries/new?place_id=<%= @place["id"] %>">New Entry</a>

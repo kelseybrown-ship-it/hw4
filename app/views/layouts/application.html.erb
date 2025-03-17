@@ -14,12 +14,25 @@
       <%= flash["notice"] %>
     </div>
     <div>
-      <a href="/">Home</a>
-      <a href="/logout">Logout</a>
-      <a href="/login">Login</a>
-      <a href="/users/new">Signup</a>
+          <a href="/">Home</a>
+      <!-- TODO: if logged in user, hide Login and Sign Up -->
+        <% if @current_user %>
+          <%= @current_user["username"] %>
+
+          <a href="/logout" class="btn btn-default">Logout</a>
+      <!-- <a href="/logout">Logout</a> -->
+      <!-- TODO: if logged in user, show user's first name and Logout button -->
+        <% else %>
+          <a href="/login" class="btn btn-default">Login</a> |
+          <a href="/users/new">Signup</a>
+        <% end %>
+      </div>
     </div>
 
     <%= yield %>
   </body>
 </html>
+
+
+    <!--  <a href="/login">Login</a>  
+      <a href="/users/new">Signup</a>>
