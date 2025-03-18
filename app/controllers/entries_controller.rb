@@ -5,14 +5,19 @@ class EntriesController < ApplicationController
   end
 
   def create
-    @entry = Entry.new
-    @entry["title"] = params["title"]
-    @entry["description"] = params["description"]
-    @entry["occurred_on"] = params["occurred_on"]
-    @entry["place_id"] = params["place_id"]
-    @entry["user_id"] = session["user_id"]
-    @entry.save
+    @user = User.find_by({ "id" => session["user_id"] })
+    if @user != nil
+      @entry = Entry.new
+      @entry["title"] = params["title"]
+      @entry["description"] = params["description"]
+      @entry["occurred_on"] = params["occurred_on"]
+      @entry["image"] = params["image"]
+      @entry["place_id"] = params["place_id"]
+      @entry["user_id"] = @current_user["id"]
+      @entry.save
+    else
+      flash["notice"] = "Login first."
+    end
     redirect_to "/places/#{@entry["place_id"]}"
   end
-
 end

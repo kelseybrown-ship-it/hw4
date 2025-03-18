@@ -1,18 +1,17 @@
 <h1>Places</h1>
 
+
 <ul>
   <% for place in @places %>
-    <% user = User.find_by({ "id" => place["user_id"]}) %> 
-    <% if user != nil %>
-      <%= user["username"] %>
-    <li>
-    <a href="/places/<%= place["id"] %>"><%= place["name"] %></a>
-    </li>
+          <li>
+           <a href="/places/<%= place["id"] %>"><%= place["name"] %></a>
+          </li>
   <% end %>
 </ul>
-<% end %>
 
-<p><%= place["name"] %></p>
+
+
+
 <p>
   <a href="/places/new">New place</a>
-  </p>
+ </p>

@@ -15,8 +15,8 @@ class UsersController < ApplicationController
       @user.save
       redirect_to "/login"
     else
-    flash["notice"] = "Email taken."
-    redirect_to "/users/new"
+      flash["notice"] = "Email taken."
+      redirect_to "/users/new"
     end
   end
 end
