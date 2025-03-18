@@ -15,7 +15,7 @@
   <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
    <div class="container-fluid">
-     <a class="navbar-brand" href="/">Tacogram</a>
+     <a class="navbar-brand" href="/">Travel Journal</a>
      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
      </button>
@@ -25,6 +25,7 @@
            <a class="/home" aria-current="page" href="/">Home</a>
        </ul>
          </form>
+         <p>
           <% if @current_user %>
              Logged in as: <%= @current_user["username"] %>
             |
@@ -38,16 +39,18 @@
 
 
         <% end %>
-       <p>
+       </p>
        <div>
     </div>
    <div>
 </nav>
 
-<div class="container">
-  <div>
-    <%= flash["notice"] %>
-  </div>
+<div class="container mt-3">
+  <% if flash["notice"] != nil %>
+      <div class="alert alert-primary">
+        <%= flash["notice"] %>
+      </div>
+  <% end %>
 
   <%= yield %>
   <div>
