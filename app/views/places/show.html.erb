@@ -7,11 +7,15 @@
 
 <div class="container mt-4 ms-0">
   <div class="row">
-<% for entry in @entries %>
+  <% for entry in @entries %>
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <h3><%= entry["title"] %></h3>
       <h4><%= entry["occurred_on"] %></h4>
-      <img src="<%= entry["image"] %>" class="img-fluid">
+      <% if entry.uploaded_image.attached? %>
+        <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid">      
+      <% else %>
+        <img src="<%= entry["image"] %>" class="img-fluid">
+      <% end %>
       <p><%= entry["description"] %></p>
     </div>
     </div>
